@@ -1,0 +1,34 @@
+// Shipping rate per kg
+const shippingRatePerKg = 5;
+
+// Function to calculate the shipping cost
+const calculateShippingCost = (weight) => {
+  // Bind Math.ceil to Math
+  const roundUp = Math.ceil.bind(Math);
+
+  // Round up the weight to the nearest kilogram
+  const roundedWeight = roundUp(weight);
+
+  // Calculate the total cost
+  const totalCost = roundedWeight * shippingRatePerKg;
+
+  return totalCost;
+};
+
+// Function to handle user input and display the result
+function calculate() {
+  // Get the value from the input field
+  const weight = parseFloat(document.getElementById("weight").value);
+  
+  // Validate the weight input
+  if (isNaN(weight) || weight <= 0) {
+    document.getElementById("result").textContent = "Please enter a valid weight.";
+    return;
+  }
+
+  // Calculate the shipping cost
+  const cost = calculateShippingCost(weight);
+
+  // Display the result
+  document.getElementById("result").textContent = `Shipping Cost: $${cost}`;
+}
